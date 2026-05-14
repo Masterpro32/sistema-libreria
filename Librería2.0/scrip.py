@@ -1,4 +1,3 @@
-# Sistema de Librería
 import json
 import os
  
@@ -8,7 +7,18 @@ ventas = []
  
 def registrar_producto():
     print("\nREGISTRO DE PRODUCTO")
-    codigo = input("Código: ")
+    while True:
+        codigo = input("Código: ")
+        repetido = False
+        for p in productos:
+            if p['codigo'] == codigo:
+                repetido = True
+                break
+        
+        if repetido:
+            print(" Error: Este código ya existe. Ingresa uno diferente.")
+        else:
+            break
     nombre = input("Nombre del producto: ")
  
     while True:
