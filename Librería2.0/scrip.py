@@ -1,4 +1,3 @@
-# Sistema de Librería
 import json
 import os
  
