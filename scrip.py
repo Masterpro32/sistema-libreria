@@ -7,9 +7,22 @@ ventas = []
 def registrar_producto():
     
     print("\nREGISTRO DE PRODUCTO")
+    nombre = input("Nombre del producto: ")
+    if nombre == "":
+        print("El nombre no puede estar vacío")
+        return
+    
+
     while True:
-        codigo = input("Código: ")
-        repetido = False
+        try:
+            codigo = input("Código: ")
+            if codigo == "":
+                print("El código no puede estar vacío")
+                continue
+            repetido = False
+        except ValueError:
+            print("Ingrese un código válido")
+            continue
         for p in productos:
             if p['codigo'] == codigo:
                 repetido = True
@@ -18,8 +31,8 @@ def registrar_producto():
             print(" Error: Este código ya existe. Ingresa uno diferente.")
         else:
             break
-    nombre = input("Nombre del producto: ")
  
+
     while True:
         try:
             precio = float(input("Precio: "))
@@ -49,7 +62,7 @@ def registrar_producto():
     productos.append(producto)
     print("Producto registrado correctamente")
  
- 
+
 def mostrar_productos():
     print("\n=== LISTA DE PRODUCTOS (Ordenados) ===")
     if not productos:
