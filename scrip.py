@@ -107,7 +107,15 @@ def buscar_producto():
     opcion = input("Seleccione opción (1 ó 2): ").strip()
     
     if opcion == '1':
-        prefijo = input("Ingrese el prefijo (Ej: P para Papeles, H para Herramientas): ").strip().upper()
+        print("\n--- Categorías Disponibles ---")
+        print("C -> Cuadernos")
+        print("P -> Papeleria")
+        print("A -> Arte y Manualidades")
+        print("H -> Herramientas de Oficina ")
+        print("E -> Escritura")
+        print("------------------------------")
+        
+        prefijo = input("Ingrese el prefijo (P, H, A, C o E): ").strip().upper()
         
         if not prefijo:
             print(" Ingrese un prefijo válido.")

@@ -299,6 +299,12 @@
             "nombre": "Calculadora Cientifica",
             "precio": 59.9,
             "stock": 20
+        },
+        {
+            "codigo": "H011",
+            "nombre": "Regla 30cm",
+            "precio": 1.0,
+            "stock": 100
         }
     ],
     "ventas": []
