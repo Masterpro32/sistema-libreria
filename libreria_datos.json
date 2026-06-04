@@ -1,0 +1,305 @@
+{
+    "productos": [
+        {
+            "codigo": "E001",
+            "nombre": "Tajador_Metal",
+            "precio": 1.5,
+            "stock": 100
+        },
+        {
+            "codigo": "E002",
+            "nombre": "Lápiz_hb",
+            "precio": 1.0,
+            "stock": 100
+        },
+        {
+            "codigo": "C001",
+            "nombre": "Cuaderno A4 Cuadriculado 100 hojas",
+            "precio": 6.9,
+            "stock": 100
+        },
+        {
+            "codigo": "C002",
+            "nombre": "Cuaderno A4 Rayado 100 hojas",
+            "precio": 6.9,
+            "stock": 100
+        },
+        {
+            "codigo": "C003",
+            "nombre": "Cuaderno Universitario 5 materias",
+            "precio": 18.9,
+            "stock": 100
+        },
+        {
+            "codigo": "C004",
+            "nombre": "Sketchboock A4 para dibujo",
+            "precio": 6.5,
+            "stock": 100
+        },
+        {
+            "codigo": "C005",
+            "nombre": "Libreta de notas A6 ",
+            "precio": 12.5,
+            "stock": 100
+        },
+        {
+            "codigo": "P001",
+            "nombre": "Cartulina Duplex Blanca",
+            "precio": 1.5,
+            "stock": 1000
+        },
+        {
+            "codigo": "P002",
+            "nombre": "Cartulina Corrugada Metalica",
+            "precio": 2.5,
+            "stock": 1000
+        },
+        {
+            "codigo": "P003",
+            "nombre": "Papel Lustre",
+            "precio": 0.4,
+            "stock": 1000
+        },
+        {
+            "codigo": "P004",
+            "nombre": "Papel Crepe ",
+            "precio": 1.2,
+            "stock": 1000
+        },
+        {
+            "codigo": "P005",
+            "nombre": "Papel Seda",
+            "precio": 0.5,
+            "stock": 1000
+        },
+        {
+            "codigo": "C006",
+            "nombre": "Block de hojas Arcoíris",
+            "precio": 4.2,
+            "stock": 100
+        },
+        {
+            "codigo": "C007",
+            "nombre": "Fólder Manila A4",
+            "precio": 1.2,
+            "stock": 500
+        },
+        {
+            "codigo": "C008",
+            "nombre": "Archivador",
+            "precio": 7.0,
+            "stock": 300
+        },
+        {
+            "codigo": "P011",
+            "nombre": "Folder Manila Oficio",
+            "precio": 2.0,
+            "stock": 500
+        },
+        {
+            "codigo": "C010",
+            "nombre": "Cuaderno de Control Escolar",
+            "precio": 9.5,
+            "stock": 100
+        },
+        {
+            "codigo": "P006",
+            "nombre": "Notas Adhesivas",
+            "precio": 2.0,
+            "stock": 100
+        },
+        {
+            "codigo": "P007",
+            "nombre": "Mica Transparente A4",
+            "precio": 0.2,
+            "stock": 1000
+        },
+        {
+            "codigo": "P008",
+            "nombre": "Banderitas Separadoras de Pagina ",
+            "precio": 1.5,
+            "stock": 500
+        },
+        {
+            "codigo": "P009",
+            "nombre": "Separadores de Plastico A4",
+            "precio": 0.8,
+            "stock": 500
+        },
+        {
+            "codigo": "P010",
+            "nombre": "Hojas Bond",
+            "precio": 0.1,
+            "stock": 10000
+        },
+        {
+            "codigo": "E003",
+            "nombre": "Lapicero Azul",
+            "precio": 1.2,
+            "stock": 100
+        },
+        {
+            "codigo": "E004",
+            "nombre": "Lapicero Rojo",
+            "precio": 1.2,
+            "stock": 100
+        },
+        {
+            "codigo": "E005",
+            "nombre": "Lapicero Negro",
+            "precio": 1.2,
+            "stock": 100
+        },
+        {
+            "codigo": "E006",
+            "nombre": "Plumon para Pizarra",
+            "precio": 3.5,
+            "stock": 100
+        },
+        {
+            "codigo": "E007",
+            "nombre": "Plumon Permanente ",
+            "precio": 4.5,
+            "stock": 100
+        },
+        {
+            "codigo": "E008",
+            "nombre": "Resaltador Amarillo",
+            "precio": 3.2,
+            "stock": 100
+        },
+        {
+            "codigo": "E009",
+            "nombre": "Borrador Blanco ",
+            "precio": 0.5,
+            "stock": 100
+        },
+        {
+            "codigo": "E010",
+            "nombre": "Corrector Liquido",
+            "precio": 3.5,
+            "stock": 100
+        },
+        {
+            "codigo": "A001",
+            "nombre": "Caja de Colores x12",
+            "precio": 13.0,
+            "stock": 100
+        },
+        {
+            "codigo": "A002",
+            "nombre": "Caja de Colores x24",
+            "precio": 25.0,
+            "stock": 100
+        },
+        {
+            "codigo": "A003",
+            "nombre": "Plumones Delgados x12",
+            "precio": 6.8,
+            "stock": 100
+        },
+        {
+            "codigo": "A004",
+            "nombre": "Caja de Plumones Gruesos x12",
+            "precio": 15.5,
+            "stock": 100
+        },
+        {
+            "codigo": "A005",
+            "nombre": "Témperas x6",
+            "precio": 5.5,
+            "stock": 100
+        },
+        {
+            "codigo": "A006",
+            "nombre": "Estuche de Acuarelas",
+            "precio": 11.9,
+            "stock": 100
+        },
+        {
+            "codigo": "A007",
+            "nombre": "Crayolas Gruesas x12",
+            "precio": 7.5,
+            "stock": 100
+        },
+        {
+            "codigo": "A008",
+            "nombre": "Plastilinas x12",
+            "precio": 4.8,
+            "stock": 100
+        },
+        {
+            "codigo": "A009",
+            "nombre": "Botella de Goma ",
+            "precio": 2.8,
+            "stock": 100
+        },
+        {
+            "codigo": "A010",
+            "nombre": "Tubo de Escarcha en Gel",
+            "precio": 2.0,
+            "stock": 100
+        },
+        {
+            "codigo": "H001",
+            "nombre": "Tijera Punta Roma",
+            "precio": 2.5,
+            "stock": 100
+        },
+        {
+            "codigo": "H002",
+            "nombre": "Cuter Plastico",
+            "precio": 4.8,
+            "stock": 100
+        },
+        {
+            "codigo": "H003",
+            "nombre": "Regla Transparente 30cm",
+            "precio": 1.5,
+            "stock": 100
+        },
+        {
+            "codigo": "H004",
+            "nombre": "Compás",
+            "precio": 4.7,
+            "stock": 100
+        },
+        {
+            "codigo": "H005",
+            "nombre": "Engrapadoras de Metal ",
+            "precio": 16.9,
+            "stock": 100
+        },
+        {
+            "codigo": "H006",
+            "nombre": "Saca Grapas",
+            "precio": 3.5,
+            "stock": 100
+        },
+        {
+            "codigo": "H007",
+            "nombre": "Perforador de Metal",
+            "precio": 14.9,
+            "stock": 100
+        },
+        {
+            "codigo": "H008",
+            "nombre": "Cinta de Embalaje",
+            "precio": 4.5,
+            "stock": 100
+        },
+        {
+            "codigo": "H009",
+            "nombre": "Cinta Masking",
+            "precio": 4.2,
+            "stock": 100
+        },
+        {
+            "codigo": "H010",
+            "nombre": "Calculadora Cientifica",
+            "precio": 59.9,
+            "stock": 20
+        }
+    ],
+    "ventas": []
+}
