@@ -130,8 +130,7 @@ class GestorInventario:
 
         self.productos.append(producto)
 
-        print(
-            f"¡Producto '{nombre}' registrado correctamente con el código {codigo}!"
+        print(f"¡Producto '{nombre}' registrado correctamente con el código {codigo}!")
     def mostrar_productos(self):
         print("\nLISTA DE PRODUCTOS")
         if not self.productos:
