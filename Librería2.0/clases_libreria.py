@@ -29,29 +29,108 @@ class GestorInventario:
 
     def registrar_producto(self):
         print("\nREGISTRO DE PRODUCTO")
-        codigo = input("Código: ")
-        nombre = input("Nombre del producto: ")
-        
+
+        nombre = input("Nombre del producto: ").strip()
+
+        if nombre == "":
+            print("El nombre no puede estar vacío")
+            return
+
+        prefijos_validos = {
+            'C': 'Cuadernos',
+            'P': 'Papelería',
+            'A': 'Arte y Manualidades',
+            'H': 'Herramientas de Oficina',
+            'E': 'Escritura',
+            'Ñ': 'Varios'
+        }
+
+        while True:
+            print("\n--- Prefijos permitidos y su significado ---")
+
+            for letra, significado in prefijos_validos.items():
+                print(f"  {letra} -> {significado}")
+
+            print("--------------------------------------------")
+
+            codigo = input(
+                "Código (Ej: E011, C009): "
+            ).strip().upper()
+
+            if codigo == "":
+                print("El código no puede estar vacío")
+                continue
+
+            primera_letra = codigo[0]
+
+            if primera_letra not in prefijos_validos:
+                print(
+                    f"\nError: El prefijo '{primera_letra}' no es válido."
+                )
+                continue
+
+            if len(codigo) < 2 or not codigo[1:].isdigit():
+                print(
+                    "Error: El código debe tener una letra seguida de números (Ej: E011)"
+                )
+                continue
+
+            repetido = any(
+                p['codigo'] == codigo
+                for p in self.productos
+            )
+
+            if repetido:
+                print("Error: Este código ya existe.")
+                continue
+
+            break
+
         while True:
             try:
-                precio = float(input("Precio: "))
-                if precio <= 0: print("El precio debe ser mayor a 0")
-                else: break
+                precio_input = input("Precio: ").strip()
+                precio = float(precio_input)
+
+                if precio <= 0:
+                    print("El precio debe ser mayor a 0")
+                    continue
+
+                if "." in precio_input:
+                    decimales = precio_input.split(".")[1]
+
+                    if len(decimales) > 2:
+                        print(
+                            "Error: El precio solo puede tener máximo 2 decimales"
+                        )
+                        continue
+
+                break
+
             except ValueError:
                 print("Ingrese un número válido")
 
         while True:
             try:
                 stock = int(input("Stock: "))
-                if stock < 0: print("El stock no puede ser negativo")
-                else: break
+
+                if stock < 0:
+                    print("El stock no puede ser negativo")
+                else:
+                    break
+
             except ValueError:
                 print("Ingrese un número válido")
 
-        producto = {"codigo": codigo, "nombre": nombre, "precio": precio, "stock": stock}
-        self.productos.append(producto)
-        print("Producto registrado correctamente")
+        producto = {
+            "codigo": codigo,
+            "nombre": nombre,
+            "precio": precio,
+            "stock": stock
+        }
 
+        self.productos.append(producto)
+
+        print(f"¡Producto '{nombre}' registrado correctamente con el código {codigo}!")
     def mostrar_productos(self):
         print("\n=== LISTA DE PRODUCTOS (Ordenados) ===")
 
