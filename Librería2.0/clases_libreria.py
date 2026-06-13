@@ -53,15 +53,74 @@ class GestorInventario:
         print("Producto registrado correctamente")
 
     def mostrar_productos(self):
-        print("\nLISTA DE PRODUCTOS")
+        print("\n=== LISTA DE PRODUCTOS (Ordenados) ===")
+
         if not self.productos:
             print("No hay productos registrados")
             return
-        
-        for p in self.productos:
-            print("---------------------")
-            print(f"Código: {p['codigo']}\nNombre: {p['nombre']}\nPrecio: S/. {p['precio']:.2f}\nStock: {p['stock']}")
-        print("---------------------")
+
+        lista_ordenada = sorted(
+            self.productos,
+            key=lambda x: x['codigo']
+        )
+
+        items_por_pagina = 10
+        total_paginas = (len(lista_ordenada) + items_por_pagina - 1) // items_por_pagina
+        pagina_actual = 1
+
+        while True:
+            inicio = (pagina_actual - 1) * items_por_pagina
+            fin = inicio + items_por_pagina
+
+            print(f"\nPágina {pagina_actual} de {total_paginas}")
+            print(f"{'Código':<10} {'Nombre':<35} {'Stock':<10} {'Precio'}")
+            print("-" * 65)
+
+            for p in lista_ordenada[inicio:fin]:
+                aviso = " BAJO" if p['stock'] < 50 else ""
+
+                print(
+                    f"{p['codigo']:<10} "
+                    f"{p['nombre']:<35} "
+                    f"{p['stock']:<10} "
+                    f"S/. {p['precio']:.2f}{aviso}"
+                )
+
+            print("-" * 65)
+
+            opciones = ['q']
+            mensaje = "[q] Salir"
+
+            if pagina_actual < total_paginas:
+                opciones.append('s')
+                mensaje += " | [s] Siguiente"
+
+            if pagina_actual > 1:
+                opciones.append('a')
+                mensaje += " | [a] Anterior"
+
+            if pagina_actual == total_paginas:
+                opciones.append("")
+                mensaje += " | [ENTER] Finalizar"
+
+            respuesta = input(
+                f"Opciones: {mensaje} -> "
+            ).strip().lower()
+
+            if respuesta not in opciones:
+                print("Error: Opción incorrecta. Intente de nuevo.")
+                continue
+
+            if respuesta == 'q' or (
+                respuesta == "" and pagina_actual == total_paginas
+            ):
+                break
+
+            elif respuesta == 's':
+                pagina_actual += 1
+
+            elif respuesta == 'a':
+                pagina_actual -= 1
 
     def buscar_producto(self):
         print("\nBUSCAR PRODUCTO")
@@ -71,8 +130,6 @@ class GestorInventario:
                 print(f"Producto encontrado:\n  Código: {p['codigo']}\n  Nombre: {p['nombre']}\n  Precio: S/. {p['precio']:.2f}\n  Stock: {p['stock']}")
                 return
         print("Producto no encontrado")
-
-
 class GestorVentas:
     def __init__(self, ventas_cargadas):
         self.ventas = ventas_cargadas
