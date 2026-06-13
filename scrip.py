@@ -5,44 +5,69 @@ productos = []
 ventas = []
 
 def registrar_producto():
-    
     print("\nREGISTRO DE PRODUCTO")
-    nombre = input("Nombre del producto: ")
+    nombre = input("Nombre del producto: ").strip()
     if nombre == "":
         print("El nombre no puede estar vacío")
         return
     
-
+    prefijos_validos = {
+        'C': 'Cuadernos',
+        'P': 'Papeleria',
+        'A': 'Arte y Manualidades',
+        'H': 'Herramientas de Oficina',
+        'E': 'Escritura',
+        'Ñ': 'Varios'
+    }
     while True:
-        try:
-            codigo = input("Código: ")
-            if codigo == "":
-                print("El código no puede estar vacío")
-                continue
-            repetido = False
-        except ValueError:
-            print("Ingrese un código válido")
+
+        print("\n--- Prefijos permitidos y su significado ---")
+        for letra, significado in prefijos_validos.items():
+            print(f"  {letra} -> {significado}")
+        print("--------------------------------------------")
+        
+        codigo = input("Código (Ej: E011, C009): ").strip().upper()
+        
+        if codigo == "":
+            print("El código no puede estar vacío")
             continue
-        for p in productos:
-            if p['codigo'] == codigo:
-                repetido = True
-                break
+        
+        primera_letra = codigo[0]
+  
+        if primera_letra not in prefijos_validos:
+            print(f"\n Error: El prefijo '{primera_letra}' no es válido.")
+            print("Intente de nuevo con un código correcto.")
+            continue  # Vuelve a empezar el bucle y muestra la lista otra vez
+            
+        repetido = any(p['codigo'] == codigo for p in productos)
         if repetido:
             print(" Error: Este código ya existe. Ingresa uno diferente.")
         else:
-            break
- 
+            break # Si pasó todas las pruebas, sale del bucle
 
     while True:
         try:
-            precio = float(input("Precio: "))
+            precio_input = input("Precio: ").strip()
+            precio = float(precio_input)
+            
             if precio <= 0:
                 print("El precio debe ser mayor a 0")
-            else:
-                break
+                continue
+
+
+            if "." in precio_input:
+
+                partes = precio_input.split(".")
+                decimales = partes[1]
+                
+                if len(decimales) > 2:
+                    print(" Error: El precio solo puede tener como máximo 2 decimales (Ej: 1.50, 6.90)")
+                    continue
+
+            break
         except ValueError:
             print("Ingrese un número válido")
- 
+
     while True:
         try:
             stock = int(input("Stock: "))
@@ -52,7 +77,7 @@ def registrar_producto():
                 break
         except ValueError:
             print("Ingrese un número válido")
- 
+
     producto = {
         "codigo": codigo,
         "nombre": nombre,
@@ -60,9 +85,9 @@ def registrar_producto():
         "stock": stock
     }
     productos.append(producto)
-    print("Producto registrado correctamente")
+    guardar_archivo()  # Auto-guardado de seguridad
+    print(f"¡Producto '{nombre}' registrado correctamente con el código {codigo}!")
  
-
 def mostrar_productos():
     print("\n=== LISTA DE PRODUCTOS (Ordenados) ===")
     if not productos:
@@ -70,33 +95,41 @@ def mostrar_productos():
         return
 
     lista_ordenada = sorted(productos, key=lambda x: x['codigo'])
-    
     items_por_pagina = 10
     total_paginas = (len(lista_ordenada) + items_por_pagina - 1) // items_por_pagina
+    pagina_actual = 1
     
-    for pagina_actual in range(1, total_paginas + 1):
-
+    while True:
         inicio = (pagina_actual - 1) * items_por_pagina
         fin = inicio + items_por_pagina
-        pagina_productos = lista_ordenada[inicio:fin]
         
         print(f"\n Página {pagina_actual} de {total_paginas}")
         print(f"{'Código':<10} {'Nombre':<35} {'Stock':<10} {'Precio'}")
         print("-" * 65)
-        
-        for p in pagina_productos:
+        for p in lista_ordenada[inicio:fin]:
             aviso = "  BAJO" if p['stock'] < 50 else ""
             print(f"{p['codigo']:<10} {p['nombre']:<35} {p['stock']:<10} S/. {p['precio']:.2f}{aviso}")
-        
         print("-" * 65)
         
-        if pagina_actual < total_paginas:
-            respuesta = input("Presiona ENTER para siguiente página o 'q' para salir: ").strip().lower()
-            if respuesta == 'q':
-                print(" Saliendo de la vista de productos.")
-                break
-        else:
-            print("\n Fin de la lista.")
+        opciones = ['q']
+        mensaje = "[q] Salir"
+        if pagina_actual < total_paginas: opciones.append('s'); mensaje += " | [s] Siguiente"
+        if pagina_actual > 1: opciones.append('a'); mensaje += " | [a] Anterior"
+        
+        if pagina_actual == total_paginas:
+            opciones.append("") 
+            mensaje += " | [ENTER] Finalizar"
+            
+        respuesta = input(f"Opciones: {mensaje} -> ").strip().lower()
+        
+        if respuesta not in opciones:
+            print(" Error: Opción incorrecta. Intente de nuevo.")
+            continue
+            
+        if respuesta == 'q' or (respuesta == "" and pagina_actual == total_paginas): 
+            break
+        elif respuesta == 's': pagina_actual += 1
+        elif respuesta == 'a': pagina_actual -= 1
  
 def buscar_producto():
     print("\n=== BUSCAR PRODUCTO ===")
