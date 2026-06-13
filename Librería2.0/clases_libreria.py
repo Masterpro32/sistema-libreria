@@ -52,7 +52,7 @@ class GestorInventario:
         self.productos.append(producto)
         print("Producto registrado correctamente")
 
-  def mostrar_productos(self):
+    def mostrar_productos(self):
         print("\n=== LISTA DE PRODUCTOS (Ordenados) ===")
 
         if not self.productos:
