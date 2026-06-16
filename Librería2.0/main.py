@@ -1,5 +1,7 @@
-# Importamos nuestras clases desde el otro archivo
-from clases_libreria import GestorArchivos, GestorInventario, GestorVentas
+# Importamos nuestras clases desde los otros archivos
+from Clases.GestorVentas import GestorVentas
+from Clases.GestorArchivo import GestorArchivos
+from Clases.GestorInventario import GestorInventario
 
 def menu():
     # 1. Inicializamos el gestor de archivos y cargamos los datos previos
