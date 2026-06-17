@@ -3,7 +3,9 @@ import os
 
 class GestorArchivos:
     def __init__(self, nombre_archivo="libreria_datos.json"):
-        self.archivo = nombre_archivo
+        # Localiza la carpeta actual
+        carpeta_actual = os.path.dirname(os.path.abspath(__file__))
+        self.archivo = os.path.join(carpeta_actual, "..", nombre_archivo)
 
     def cargar_datos(self):
         if os.path.exists(self.archivo):
