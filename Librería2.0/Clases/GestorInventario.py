@@ -41,68 +41,70 @@ class GestorInventario:
             print("--------------------------------------------")
             codigo = input("Código (Debe ser de 4 caracteres, Ej: C001): ").strip()
             if codigo == "":
-                print("❌ El código no puede estar vacío")
+                print("El código no puede estar vacío")
                 continue
             if len(codigo) != 4:
-                print("❌ Error: El código debe tener EXACTAMENTE 4 caracteres (Ejemplo: C001).")
+                print("Error: El código debe tener EXACTAMENTE 4 caracteres (Ejemplo: C001).")
                 continue
             primera_letra = codigo[0]
             if not primera_letra.isupper():
-                print("❌ Error: La primera letra debe ser MAYÚSCULA obligatoriamente (Ejemplo: C001).")
+                print("Error: La primera letra debe ser MAYÚSCULA obligatoriamente (Ejemplo: C001).")
                 continue
             if primera_letra not in prefijos_validos:
-                print(f"❌ Error: El prefijo '{primera_letra}' no es válido.")
+                print(f"Error: El prefijo '{primera_letra}' no es válido.")
                 continue
             if not codigo[1:].isdigit():
-                print("❌ Error: Después de la letra deben seguir exactamente 3 números (Ejemplo: C001).")
+                print("Error: Después de la letra deben seguir exactamente 3 números (Ejemplo: C001).")
                 continue
             repetido = any(p['codigo'] == codigo for p in self.productos)
             if repetido:
-                print("❌ Error: Este código ya existe.")
+                print("Error: Este código ya existe.")
                 continue
             categoria = prefijos_validos[primera_letra]
             break
+        import re
+        while True:
+            precio_input = input("Precio de venta (S/.): ").strip()
+            patron_precio = r"^\d+(\.\d{1,2})?$"
+            if not re.match(patron_precio, precio_input):
+                print("Error: Formato inválido. Ingrese solo números positivos con máximo 2 decimales (Ej: 5.50).")
+                continue
+            precio = float(precio_input)
+            if precio == 0:
+                print("Error: El precio debe ser mayor a 0.")
+                continue
+            break
         while True:
             try:
-                precio_input = input("Precio: ").strip()
-                precio = float(precio_input)
-
-                if precio <= 0:
-                    print("El precio debe ser mayor a 0")
-                    continue
-
-                if "." in precio_input:
-                    decimales = precio_input.split(".")[1]
-
-                    if len(decimales) > 2:
-                        print(
-                            "Error: El precio solo puede tener máximo 2 decimales"
-                        )
-                        continue
-
-                break
-
-            except ValueError:
-                print("Ingrese un número válido")
-
-        while True:
-            try:
-                stock = int(input("Stock: "))
+                stock_input = input("Stock Inicial: ").strip()
+                stock = int(stock_input)
 
                 if stock < 0:
-                    print("El stock no puede ser negativo")
-                else:
-                    break
-
+                    print("Error: El stock inicial no puede ser negativo.")
+                    continue
+                break
             except ValueError:
-                print("Ingrese un número válido")
+                print("Error: Ingrese un número entero válido para el stock.")
+
+        while True:
+            try:
+                stock_min_input = input("Definir Stock Mínimo de Alerta: ").strip()
+                stock_minimo = int(stock_min_input)
+
+                if stock_minimo < 1:
+                    print("Error: El stock mínimo de alerta debe ser de al menos 1 unidad.")
+                    continue
+                break
+            except ValueError:
+                print("Error: Ingrese un número entero válido para el stock mínimo.")
 
         producto = {
             "codigo": codigo,
             "nombre": nombre,
-            "categoria": categoria,  # <-- Añadimos este campo requerido por el profesor
+            "categoria": categoria,
             "precio": precio,
-            "stock": stock
+            "stock": stock,
+            "stock_minimo": stock_minimo  
         }
         self.productos.append(producto)
         print(f"¡Producto '{nombre}' registrado correctamente con el código {codigo}!")
