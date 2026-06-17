@@ -7,13 +7,25 @@ class GestorInventario:
 
     def registrar_producto(self):
         print("\nREGISTRO DE PRODUCTO")
+        while True:
+            nombre = input("Nombre del producto: ").strip()
+            if len(nombre) < 3 or len(nombre) > 60:
+                print("❌ Error: El nombre debe tener entre 3 y 60 caracteres.")
+                continue
 
-        nombre = input("Nombre del producto: ").strip()
+            if nombre.isdigit():
+                print("❌ Error: El nombre no puede ser solo números.")
+                continue
+                
+            if all(not c.isalnum() and not c.isspace() for c in nombre):
+                print("❌ Error: El nombre no puede contener solo símbolos.")
+                continue
 
-        if nombre == "":
-            print("El nombre no puede estar vacío")
-            return
-
+            if any(p['nombre'].lower() == nombre.lower() for p in self.productos):
+                print("❌ Error: Ya existe un producto con este mismo nombre.")
+                continue
+                
+            break
         prefijos_validos = {
             'C': 'Cuadernos',
             'P': 'Papelería',
