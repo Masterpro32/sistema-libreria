@@ -12,7 +12,6 @@ class GestorInventario:
             if len(nombre) < 3 or len(nombre) > 60:
                 print("Error: El nombre debe tener entre 3 y 60 caracteres.")
                 continue
-
             if nombre.isdigit():
                 print("Error: El nombre no puede ser solo números.")
                 continue
@@ -20,7 +19,6 @@ class GestorInventario:
             if all(not c.isalnum() and not c.isspace() for c in nombre):
                 print("Error: El nombre no puede contener solo símbolos.")
                 continue
-
             if any(p['nombre'].lower() == nombre.lower() for p in self.productos):
                 print("Error: Ya existe un producto con este mismo nombre.")
                 continue
@@ -78,26 +76,22 @@ class GestorInventario:
             try:
                 stock_input = input("Stock Inicial: ").strip()
                 stock = int(stock_input)
-
                 if stock < 0:
                     print("Error: El stock inicial no puede ser negativo.")
                     continue
                 break
             except ValueError:
                 print("Error: Ingrese un número entero válido para el stock.")
-
         while True:
             try:
                 stock_min_input = input("Definir Stock Mínimo de Alerta: ").strip()
                 stock_minimo = int(stock_min_input)
-
                 if stock_minimo < 1:
                     print("Error: El stock mínimo de alerta debe ser de al menos 1 unidad.")
                     continue
                 break
             except ValueError:
                 print("Error: Ingrese un número entero válido para el stock mínimo.")
-
         producto = {
             "codigo": codigo,
             "nombre": nombre,
@@ -110,10 +104,8 @@ class GestorInventario:
         print(f"¡Producto '{nombre}' registrado correctamente con el código {codigo}!")
 
     def mostrar_productos(self):
-        print("\n=== LISTA DE PRODUCTOS (Ordenados) ===")
-
         if not self.productos:
-            print("No hay productos registrados")
+            print("\nEl inventario esta vacio. Registre productos primero.")
             return
 
         lista_ordenada = sorted(
@@ -121,69 +113,113 @@ class GestorInventario:
             key=lambda x: x['codigo']
         )
 
-        items_por_pagina = 10
-        total_paginas = (len(lista_ordenada) + items_por_pagina - 1) // items_por_pagina
+        items_for_pagina = 10
+        total_paginas = (len(lista_ordenada) + items_for_pagina - 1) // items_for_pagina
         pagina_actual = 1
 
         while True:
-            inicio = (pagina_actual - 1) * items_por_pagina
-            fin = inicio + items_por_pagina
+            inicio = (pagina_actual - 1) * items_for_pagina
+            fin = inicio + items_for_pagina
 
-            print(f"\nPágina {pagina_actual} de {total_paginas}")
-            print(f"{'Código':<10} {'Nombre':<35} {'Stock':<10} {'Precio'}")
-            print("-" * 65)
+            print("\n==========================================================================")
+            print(f"                       CATALOGO - PAGINA {pagina_actual} de {total_paginas}")
+            print("==========================================================================")
+            print(f"{'CODIGO':<8} | {'NOMBRE':<35} | {'PRECIO':<10} | {'STOCK':<8} | {'ESTADO'}")
+            print("-" * 74)
 
-            for p in lista_ordenada[inicio:fin]:
-                aviso = " BAJO" if p['stock'] < 50 else ""
+            productos_pagina = lista_ordenada[inicio:fin]
 
-                print(
-                    f"{p['codigo']:<10} "
-                    f"{p['nombre']:<35} "
-                    f"{p['stock']:<10} "
-                    f"S/. {p['precio']:.2f}{aviso}"
-                )
+            for p in productos_pagina:
+                codigo = p['codigo']
+                nombre = p['nombre']
+                precio = f"S/. {p['precio']:.2f}"
+                stock = p['stock']
+                
+                stock_min = p.get('stock_minimo', 1)
 
-            print("-" * 65)
+                if stock == 0:
+                    estado = "[SIN STOCK]"
+                elif stock <= stock_min:
+                    estado = f"[BAJO STOCK] (Min: {stock_min})"
+                else:
+                    estado = "[OK]"
 
+                print(f"{codigo:<8} | {nombre:<35} | {precio:<10} | {stock:<8} | {estado}")
+            
+            print("==========================================================================")
+
+            # Lógica dinámica del menú
             opciones = ['q']
             mensaje = "[q] Salir"
-
+            
             if pagina_actual < total_paginas:
                 opciones.append('s')
                 mensaje += " | [s] Siguiente"
-
+            
             if pagina_actual > 1:
                 opciones.append('a')
                 mensaje += " | [a] Anterior"
 
-            if pagina_actual == total_paginas:
-                opciones.append("")
-                mensaje += " | [ENTER] Finalizar"
+            # El input dinámico que querías
+            opcion = input(f"Opciones: {mensaje} -> ").strip().lower()
 
-            respuesta = input(
-                f"Opciones: {mensaje} -> "
-            ).strip().lower()
-
-            if respuesta not in opciones:
-                print("Error: Opción incorrecta. Intente de nuevo.")
-                continue
-
-            if respuesta == 'q' or (
-                respuesta == "" and pagina_actual == total_paginas
-            ):
+            if opcion == 'q':
                 break
-
-            elif respuesta == 's':
+            elif opcion == 's' and pagina_actual < total_paginas:
                 pagina_actual += 1
-
-            elif respuesta == 'a':
+            elif opcion == 'a' and pagina_actual > 1:
                 pagina_actual -= 1
+            else:
+                print("Opcion invalida.")
 
     def buscar_producto(self):
         print("\nBUSCAR PRODUCTO")
-        nombre_buscar = input("Ingrese nombre: ")
+        nombre_buscar = input("Ingrese el nombre del producto a buscar: ").strip().lower()
+        encontrados = False
+        
         for p in self.productos:
-            if p['nombre'].lower() == nombre_buscar.lower():
-                print(f"Producto encontrado:\n  Código: {p['codigo']}\n  Nombre: {p['nombre']}\n  Precio: S/. {p['precio']:.2f}\n  Stock: {p['stock']}")
-                return
-        print("Producto no encontrado")
+            if nombre_buscar in p['nombre'].lower():
+                stock_min = p.get('stock_minimo', 1)
+                if p['stock'] == 0:
+                    estado = "[SIN STOCK]"
+                elif p['stock'] <= stock_min:
+                    estado = "[BAJO STOCK]"
+                else:
+                    estado = "[OK]"
+                    
+                print(f"\nProducto Encontrado:")
+                print(f"Codigo: {p['codigo']}")
+                print(f"Nombre: {p['nombre']}")
+                print(f"Categoria: {p.get('categoria', 'Sin Categoria')}")
+                print(f"Precio: S/. {p['precio']:.2f}")
+                print(f"Stock Actual: {p['stock']} {estado}")
+                encontrados = True
+                
+        if not encontrados:
+            print("No se encontraron productos con ese nombre.")
+
+    def buscar_producto(self):
+        print("\nBUSCAR PRODUCTO")
+        nombre_buscar = input("Ingrese el nombre del producto a buscar: ").strip().lower()
+        encontrados = False
+        
+        for p in self.productos:
+            if nombre_buscar in p['nombre'].lower():
+                stock_min = p.get('stock_minimo', 1)
+                if p['stock'] == 0:
+                    estado = "[SIN STOCK]"
+                elif p['stock'] <= stock_min:
+                    estado = "[BAJO STOCK]"
+                else:
+                    estado = "[OK]"
+                    
+                print(f"\nProducto Encontrado:")
+                print(f"Codigo: {p['codigo']}")
+                print(f"Nombre: {p['nombre']}")
+                print(f"Categoria: {p.get('categoria', 'Sin Categoria')}")
+                print(f"Precio: S/. {p['precio']:.2f}")
+                print(f"Stock Actual: {p['stock']} {estado}")
+                encontrados = True
+                
+        if not encontrados:
+            print("No se encontraron productos con ese nombre.")
