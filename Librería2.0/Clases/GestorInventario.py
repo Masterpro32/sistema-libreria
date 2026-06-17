@@ -10,19 +10,19 @@ class GestorInventario:
         while True:
             nombre = input("Nombre del producto: ").strip()
             if len(nombre) < 3 or len(nombre) > 60:
-                print("❌ Error: El nombre debe tener entre 3 y 60 caracteres.")
+                print("Error: El nombre debe tener entre 3 y 60 caracteres.")
                 continue
 
             if nombre.isdigit():
-                print("❌ Error: El nombre no puede ser solo números.")
+                print("Error: El nombre no puede ser solo números.")
                 continue
                 
             if all(not c.isalnum() and not c.isspace() for c in nombre):
-                print("❌ Error: El nombre no puede contener solo símbolos.")
+                print("Error: El nombre no puede contener solo símbolos.")
                 continue
 
             if any(p['nombre'].lower() == nombre.lower() for p in self.productos):
-                print("❌ Error: Ya existe un producto con este mismo nombre.")
+                print("Error: Ya existe un producto con este mismo nombre.")
                 continue
                 
             break
@@ -34,48 +34,34 @@ class GestorInventario:
             'E': 'Escritura',
             'Ñ': 'Varios'
         }
-
         while True:
             print("\n--- Prefijos permitidos y su significado ---")
-
             for letra, significado in prefijos_validos.items():
                 print(f"  {letra} -> {significado}")
-
             print("--------------------------------------------")
-
-            codigo = input(
-                "Código (Ej: E011, C009): "
-            ).strip().upper()
-
+            codigo = input("Código (Debe ser de 4 caracteres, Ej: C001): ").strip()
             if codigo == "":
-                print("El código no puede estar vacío")
+                print("❌ El código no puede estar vacío")
                 continue
-
+            if len(codigo) != 4:
+                print("❌ Error: El código debe tener EXACTAMENTE 4 caracteres (Ejemplo: C001).")
+                continue
             primera_letra = codigo[0]
-
+            if not primera_letra.isupper():
+                print("❌ Error: La primera letra debe ser MAYÚSCULA obligatoriamente (Ejemplo: C001).")
+                continue
             if primera_letra not in prefijos_validos:
-                print(
-                    f"\nError: El prefijo '{primera_letra}' no es válido."
-                )
+                print(f"❌ Error: El prefijo '{primera_letra}' no es válido.")
                 continue
-
-            if len(codigo) < 2 or not codigo[1:].isdigit():
-                print(
-                    "Error: El código debe tener una letra seguida de números (Ej: E011)"
-                )
+            if not codigo[1:].isdigit():
+                print("❌ Error: Después de la letra deben seguir exactamente 3 números (Ejemplo: C001).")
                 continue
-
-            repetido = any(
-                p['codigo'] == codigo
-                for p in self.productos
-            )
-
+            repetido = any(p['codigo'] == codigo for p in self.productos)
             if repetido:
-                print("Error: Este código ya existe.")
+                print("❌ Error: Este código ya existe.")
                 continue
-
+            categoria = prefijos_validos[primera_letra]
             break
-
         while True:
             try:
                 precio_input = input("Precio: ").strip()
@@ -114,13 +100,13 @@ class GestorInventario:
         producto = {
             "codigo": codigo,
             "nombre": nombre,
+            "categoria": categoria,  # <-- Añadimos este campo requerido por el profesor
             "precio": precio,
             "stock": stock
         }
-
         self.productos.append(producto)
-
         print(f"¡Producto '{nombre}' registrado correctamente con el código {codigo}!")
+
     def mostrar_productos(self):
         print("\n=== LISTA DE PRODUCTOS (Ordenados) ===")
 
