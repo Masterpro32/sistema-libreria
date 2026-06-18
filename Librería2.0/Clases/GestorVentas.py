@@ -1,6 +1,6 @@
 import json
-import os
 from datetime import datetime
+from collections import Counter
 
 class GestorVentas:
     def __init__(self, ventas_cargadas):
@@ -9,106 +9,105 @@ class GestorVentas:
     def validar_nombre_vendedor(self, prompt):
         while True:
             nombre = input(prompt).strip()
-            # Valida solo letras y espacios, mínimo 3 caracteres
             if (nombre.replace(" ", "").isalpha()) and len(nombre) >= 3:
                 return nombre
-            print("Error: El nombre debe tener mínimo 3 letras y no contener números ni símbolos.")
+            print("Error: El nombre debe tener mínimo 3 letras y no contener números.")
 
     def vender_producto(self, inventario):
         print("\n--- REGISTRAR VENTA ---")
         if not inventario.productos:
             print("No hay productos registrados.")
             return
-        codigo = input("Ingrese el código del producto (ej. C001): ").strip().upper()
-        if len(codigo) != 4 or not (codigo[0].isalpha() and codigo[1:].isdigit()):
-            print("Error: El código debe tener 1 letra y 3 números.")
-            return
+
+        codigo = input("Ingrese el código del producto: ").strip().upper()
         producto = next((p for p in inventario.productos if p['codigo'] == codigo), None)
-        if not producto:
-            print("Error: Producto no encontrado.")
+        
+        if not producto or producto['stock'] <= 0:
+            print("Error: Producto no encontrado o sin stock.")
             return
-        if producto['stock'] <= 0:
-            print("Error: El producto está agotado.")
-            return
-        print(f"Producto: {producto['nombre']} | Stock: {producto['stock']}")  
+
         while True:
             try:
-                cantidad = int(input("Cantidad a vender: "))
-                if cantidad <= 0:
-                    print("Error: La cantidad debe ser mayor a 0.")
-                elif cantidad > producto['stock']:
-                    print(f"Error: Stock insuficiente. Disponible: {producto['stock']}")
-                else:
+                cantidad = int(input(f"Cantidad a vender (Stock: {producto['stock']}): "))
+                if 0 < cantidad <= producto['stock']:
                     break
+                print("Error: Cantidad inválida.")
             except ValueError:
-                print("Error: Ingrese un número entero válido.")
-        # 1. Validar nombre del vendedor
-        vendedor = self.validar_nombre_vendedor("Ingrese nombre del vendedor: ")
+                print("Error: Ingrese un número entero.")
 
-        # 2. Validar medio de pago
-        while True:
-            print("\nMedios de pago disponibles: 1. Efectivo, 2. Tarjeta, 3. Yape")
-            opcion_pago = input("Seleccione (1-3): ").strip()
-            
-            if opcion_pago == "1":
-                medio_pago = "Efectivo"
-                break
-            elif opcion_pago == "2":
-                medio_pago = "Tarjeta"
-                break
-            elif opcion_pago == "3":
-                # Bucle interno solo para el código de Yape
-                while True:
-                    codigo_yape = input("Ingrese código de seguridad de 3 dígitos: ").strip()
-                    if codigo_yape.isdigit() and len(codigo_yape) == 3:
-                        medio_pago = f"Yape (Cod: {codigo_yape})"
-                        break # Rompe el bucle de Yape
-                    else:
-                        print("Error: El código debe ser de exactamente 3 números.")
-                break # Rompe el bucle de selección de pago general
-            else:
-                print("Opción inválida. Por favor, elija 1, 2 o 3.")
+        vendedor = self.validar_nombre_vendedor("Nombre del vendedor: ")
         
-        stock_anterior = producto['stock']
-        producto['stock'] -= cantidad
-        stock_nuevo = producto['stock']
+        precio_c = producto.get('precio_compra', 0)
         total = cantidad * producto['precio']
-        
+        utilidad = (producto['precio'] - precio_c) * cantidad
         venta = {
             "fecha": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
             "vendedor": vendedor,
             "codigo": producto['codigo'],
             "nombre": producto['nombre'],
             "cantidad": cantidad,
-            "stock_anterior": stock_anterior,
-            "stock_nuevo": stock_nuevo,
-            "precio_unitario": producto['precio'],
             "total": total,
-            "medio_pago": medio_pago
+            "utilidad": utilidad
         }
-        
+        producto['stock'] -= cantidad
         self.ventas.append(venta)
-        print(f"¡Venta realizada! Total: S/. {total:.2f}")
-        return True
+        print(f"¡Venta realizada! Utilidad: S/. {utilidad:.2f}")
 
-    def reporte_ventas(self):
-        print("\n" + "="*80)
-        print(f"{'REPORTE DETALLADO DE VENTAS':^80}")
-        print("="*80)
-        
+    def reporte_ventas(self, inventario):
         if not self.ventas:
-            print("No hay ventas registradas.")
+            print("\nNo hay ventas registradas.")
             return
+
+        print("\n--- REPORTES DE VENTAS ---")
+        print("1. Ver todas las ventas")
+        print("2. Filtrar por categoría")
+        print("3. Ver producto más vendido")
+        op = input("Seleccione una opción: ")
+
+        lista = self.ventas
+        if op == "2":
+            cats = sorted(list(set(p.get('categoria', 'Sin Categoria') for p in inventario.productos)))
+            print("\nCategorías disponibles:")
+            for i, cat in enumerate(cats, 1):
+                print(f"{i}. {cat}")
             
-        for i, v in enumerate(self.ventas, 1):
-            nombre_vendedor = v.get('vendedor', 'N/A')
-            pago = v.get('medio_pago', 'No especificado')
-            
-            print(f"Venta #{i} | {v['fecha']} | Vendedor: {nombre_vendedor}")
-            print(f"  Producto: {v['nombre']} (Cod: {v['codigo']})")
-            print(f"  Stock: {v['stock_anterior']} -> {v['stock_nuevo']} | Cant: {v['cantidad']}")
-            print(f"  Pago: {pago} | Total: S/. {v['total']:.2f}")
-            print("-" * 40) 
-        total_general = sum(v['total'] for v in self.ventas)
-        print(f"\nTOTAL GENERAL ACUMULADO: S/. {total_general:.2f}")
-        print("="*80)
+            sel = input("\nIngrese el número de la categoría: ").strip()
+            if sel.isdigit() and 0 < int(sel) <= len(cats):
+                cat_elegida = cats[int(sel)-1].lower()
+                
+                # Lógica robusta: Si es 'sin categoria', busca productos sin la clave o vacíos
+                if cat_elegida == "sin categoria":
+                    cods = [p['codigo'] for p in inventario.productos if 'categoria' not in p or not p.get('categoria')]
+                else:
+                    cods = [p['codigo'] for p in inventario.productos if p.get('categoria', '').lower() == cat_elegida]
+                
+                lista = [v for v in self.ventas if v.get('codigo') in cods]
+            else:
+                print("Opción inválida.")
+                return
+        elif op == "3":
+            nombres = [v['nombre'] for v in self.ventas]
+            mas_vendido = Counter(nombres).most_common(1)
+            if mas_vendido:
+                print(f"\nProducto estrella: {mas_vendido[0][0]} ({mas_vendido[0][1]} unidades)")
+            return
+        elif op != "1":
+            print("Opción inválida.")
+            return
+
+        print(f"\n{'FECHA':<20} | {'PRODUCTO':<35} | {'CANT.':<6} | {'TOTAL':<11} | {'UTILIDAD':<8}")
+        print("-" * 80)
+        
+        ut_total = 0
+        un_total = 0
+        for v in lista:
+            cant = v.get('cantidad', 0)
+            ut = v.get('utilidad', 0)
+            un_total += cant
+            ut_total += ut
+            print(f"{v.get('fecha', 'N/A'):<20} | {v.get('nombre', 'Desconocido'):<35} | {cant:<6} | S/. {v.get('total', 0):<6.2f} | S/. {ut:<6.2f}")
+        
+        print("-" * 80)
+        print(f"TOTAL UNIDADES VENDIDAS: {un_total}")
+        print(f"GANANCIA TOTAL (UTILIDAD): S/. {ut_total:.2f}")
+        print("=" * 80)

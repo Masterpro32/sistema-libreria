@@ -30,7 +30,7 @@ class GestorArchivos:
             datos = {"productos": productos, "ventas": ventas}
             with open(self.archivo, "w", encoding="utf-8") as f:
                 json.dump(datos, f, ensure_ascii=False, indent=4)
-            print(f"💾 Datos guardados correctamente en '{self.archivo}'")
+            print(f"Datos guardados correctamente en '{self.archivo}'")
             return True
         except Exception:
             return False

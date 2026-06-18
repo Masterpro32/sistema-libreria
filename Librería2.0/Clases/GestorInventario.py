@@ -15,14 +15,12 @@ class GestorInventario:
             if nombre.isdigit():
                 print("Error: El nombre no puede ser solo números.")
                 continue
-                
             if all(not c.isalnum() and not c.isspace() for c in nombre):
                 print("Error: El nombre no puede contener solo símbolos.")
                 continue
             if any(p['nombre'].lower() == nombre.lower() for p in self.productos):
                 print("Error: Ya existe un producto con este mismo nombre.")
                 continue
-                
             break
         prefijos_validos = {
             'C': 'Cuadernos',
@@ -73,6 +71,25 @@ class GestorInventario:
                 continue
             break
         while True:
+            compra_input = input("Precio de compra (S/.): ").strip()
+            if not re.match(r"^\d+(\.\d{1,2})?$", compra_input):
+                print("Formato inválido.")
+                continue
+            precio_compra = float(compra_input)
+            if precio_compra >= precio:
+                print("Error: El precio de compra debe ser menor al de venta.")
+                continue
+            break
+        producto = {
+            "codigo": codigo,
+            "nombre": nombre,
+            "categoria": categoria,
+            "precio": precio,
+            "precio_compra": precio_compra, # NUEVO CAMPO
+            "stock": stock,
+            "stock_minimo": stock_minimo  
+        }
+        while True:
             try:
                 stock_input = input("Stock Inicial: ").strip()
                 stock = int(stock_input)
@@ -107,62 +124,45 @@ class GestorInventario:
         if not self.productos:
             print("\nEl inventario esta vacio. Registre productos primero.")
             return
-
         lista_ordenada = sorted(
             self.productos,
             key=lambda x: x['codigo']
         )
-
         items_for_pagina = 10
         total_paginas = (len(lista_ordenada) + items_for_pagina - 1) // items_for_pagina
         pagina_actual = 1
-
         while True:
             inicio = (pagina_actual - 1) * items_for_pagina
             fin = inicio + items_for_pagina
-
             print("\n==========================================================================")
             print(f"                       CATALOGO - PAGINA {pagina_actual} de {total_paginas}")
             print("==========================================================================")
             print(f"{'CODIGO':<8} | {'NOMBRE':<35} | {'PRECIO':<10} | {'STOCK':<8} | {'ESTADO'}")
             print("-" * 74)
-
             productos_pagina = lista_ordenada[inicio:fin]
-
             for p in productos_pagina:
                 codigo = p['codigo']
                 nombre = p['nombre']
                 precio = f"S/. {p['precio']:.2f}"
                 stock = p['stock']
-                
                 stock_min = p.get('stock_minimo', 1)
-
                 if stock == 0:
                     estado = "[SIN STOCK]"
                 elif stock <= stock_min:
                     estado = f"[BAJO STOCK] (Min: {stock_min})"
                 else:
                     estado = "[OK]"
-
                 print(f"{codigo:<8} | {nombre:<35} | {precio:<10} | {stock:<8} | {estado}")
-            
             print("==========================================================================")
-
-            # Lógica dinámica del menú
             opciones = ['q']
             mensaje = "[q] Salir"
-            
             if pagina_actual < total_paginas:
                 opciones.append('s')
                 mensaje += " | [s] Siguiente"
-            
             if pagina_actual > 1:
                 opciones.append('a')
                 mensaje += " | [a] Anterior"
-
-            # El input dinámico que querías
             opcion = input(f"Opciones: {mensaje} -> ").strip().lower()
-
             if opcion == 'q':
                 break
             elif opcion == 's' and pagina_actual < total_paginas:
@@ -176,7 +176,6 @@ class GestorInventario:
         print("\nBUSCAR PRODUCTO")
         nombre_buscar = input("Ingrese el nombre del producto a buscar: ").strip().lower()
         encontrados = False
-        
         for p in self.productos:
             if nombre_buscar in p['nombre'].lower():
                 stock_min = p.get('stock_minimo', 1)
@@ -186,7 +185,6 @@ class GestorInventario:
                     estado = "[BAJO STOCK]"
                 else:
                     estado = "[OK]"
-                    
                 print(f"\nProducto Encontrado:")
                 print(f"Codigo: {p['codigo']}")
                 print(f"Nombre: {p['nombre']}")
@@ -194,7 +192,6 @@ class GestorInventario:
                 print(f"Precio: S/. {p['precio']:.2f}")
                 print(f"Stock Actual: {p['stock']} {estado}")
                 encontrados = True
-                
         if not encontrados:
             print("No se encontraron productos con ese nombre.")
 
@@ -202,7 +199,6 @@ class GestorInventario:
         print("\nBUSCAR PRODUCTO")
         nombre_buscar = input("Ingrese el nombre del producto a buscar: ").strip().lower()
         encontrados = False
-        
         for p in self.productos:
             if nombre_buscar in p['nombre'].lower():
                 stock_min = p.get('stock_minimo', 1)
@@ -211,15 +207,13 @@ class GestorInventario:
                 elif p['stock'] <= stock_min:
                     estado = "[BAJO STOCK]"
                 else:
-                    estado = "[OK]"
-                    
+                    estado = "[OK]" 
                 print(f"\nProducto Encontrado:")
                 print(f"Codigo: {p['codigo']}")
                 print(f"Nombre: {p['nombre']}")
                 print(f"Categoria: {p.get('categoria', 'Sin Categoria')}")
                 print(f"Precio: S/. {p['precio']:.2f}")
                 print(f"Stock Actual: {p['stock']} {estado}")
-                encontrados = True
-                
+                encontrados = True     
         if not encontrados:
             print("No se encontraron productos con ese nombre.")

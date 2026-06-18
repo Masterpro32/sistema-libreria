@@ -36,13 +36,12 @@ def menu():
                 archivos.guardar_datos(inventario.productos, caja.ventas)
                 
         elif opcion == 5:
-            caja.reporte_ventas()
+            caja.reporte_ventas(inventario)
         elif opcion == 6:
             archivos.guardar_datos(inventario.productos, caja.ventas)
             print("Programa finalizado")
             break
         else:
             print("Opción inválida")
-
 if __name__ == "__main__":
     menu()
