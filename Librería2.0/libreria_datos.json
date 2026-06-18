@@ -16,7 +16,7 @@
             "codigo": "C001",
             "nombre": "Cuaderno A4 Cuadriculado 100 hojas",
             "precio": 6.9,
-            "stock": 100
+            "stock": 97
         },
         {
             "codigo": "C002",
@@ -40,7 +40,7 @@
             "codigo": "C005",
             "nombre": "Libreta de notas A6 ",
             "precio": 12.5,
-            "stock": 100
+            "stock": 96
         },
         {
             "codigo": "P001",
@@ -64,7 +64,7 @@
             "codigo": "P004",
             "nombre": "Papel Crepe ",
             "precio": 1.2,
-            "stock": 1000
+            "stock": 990
         },
         {
             "codigo": "P005",
@@ -148,7 +148,7 @@
             "codigo": "E005",
             "nombre": "Lapicero Negro",
             "precio": 1.2,
-            "stock": 100
+            "stock": 99
         },
         {
             "codigo": "E006",
@@ -172,7 +172,7 @@
             "codigo": "E009",
             "nombre": "Borrador Blanco ",
             "precio": 0.5,
-            "stock": 100
+            "stock": 94
         },
         {
             "codigo": "E010",
@@ -307,5 +307,75 @@
             "stock": 100
         }
     ],
-    "ventas": []
+    "ventas": [
+        {
+            "fecha": "17/06/2026 21:23:53",
+            "codigo": "C001",
+            "nombre": "Cuaderno A4 Cuadriculado 100 hojas",
+            "cantidad": 3,
+            "stock_anterior": 100,
+            "stock_nuevo": 97,
+            "precio_unitario": 6.9,
+            "total": 20.700000000000003,
+            "medio_pago": "efectivo"
+        },
+        {
+            "fecha": "17/06/2026 21:31:15",
+            "codigo": "C005",
+            "nombre": "Libreta de notas A6 ",
+            "cantidad": 4,
+            "stock_anterior": 100,
+            "stock_nuevo": 96,
+            "precio_unitario": 12.5,
+            "total": 50.0,
+            "medio_pago": "tarjeta"
+        },
+        {
+            "fecha": "17/06/2026 22:00:24",
+            "codigo": "E009",
+            "nombre": "Borrador Blanco ",
+            "cantidad": 3,
+            "stock_anterior": 100,
+            "stock_nuevo": 97,
+            "precio_unitario": 0.5,
+            "total": 1.5,
+            "medio_pago": "efecsadaa"
+        },
+        {
+            "fecha": "17/06/2026 22:08:34",
+            "vendedor": "jeanpier",
+            "codigo": "E005",
+            "nombre": "Lapicero Negro",
+            "cantidad": 1,
+            "stock_anterior": 100,
+            "stock_nuevo": 99,
+            "precio_unitario": 1.2,
+            "total": 1.2,
+            "medio_pago": "Yape (Cod: 974)"
+        },
+        {
+            "fecha": "17/06/2026 22:22:05",
+            "vendedor": "harold",
+            "codigo": "E009",
+            "nombre": "Borrador Blanco ",
+            "cantidad": 3,
+            "stock_anterior": 97,
+            "stock_nuevo": 94,
+            "precio_unitario": 0.5,
+            "total": 1.5,
+            "medio_pago": "Yape (Cod: 457)"
+        },
+        {
+            "fecha": "17/06/2026 22:28:58",
+            "vendedor": "Diego",
+            "codigo": "P004",
+            "nombre": "Papel Crepe ",
+            "cantidad": 10,
+            "stock_anterior": 1000,
+            "stock_nuevo": 990,
+            "precio_unitario": 1.2,
+            "total": 12.0,
+            "medio_pago": "Efectivo"
+        }
+    ]
 }

@@ -4,11 +4,9 @@ from Clases.GestorArchivo import GestorArchivos
 from Clases.GestorInventario import GestorInventario
 
 def menu():
-    # 1. Inicializamos el gestor de archivos y cargamos los datos previos
+
     archivos = GestorArchivos()
     productos_guardados, ventas_guardadas = archivos.cargar_datos()
-
-    # 2. Instanciamos nuestras clases principales con los datos cargados
     inventario = GestorInventario(productos_guardados)
     caja = GestorVentas(ventas_guardadas)
 
@@ -26,19 +24,20 @@ def menu():
         except ValueError:
             print("Opción inválida")
             continue
-
         if opcion == 1:
             inventario.registrar_producto()
+            archivos.guardar_datos(inventario.productos, caja.ventas)
         elif opcion == 2:
             inventario.mostrar_productos()
         elif opcion == 3:
             inventario.buscar_producto()
         elif opcion == 4:
-            caja.vender_producto(inventario) # Le pasamos el inventario para que verifique el stock
+            if caja.vender_producto(inventario): 
+                archivos.guardar_datos(inventario.productos, caja.ventas)
+                
         elif opcion == 5:
             caja.reporte_ventas()
         elif opcion == 6:
-            # Al salir, le pasamos las listas actualizadas al gestor de archivos
             archivos.guardar_datos(inventario.productos, caja.ventas)
             print("Programa finalizado")
             break
@@ -47,4 +46,3 @@ def menu():
 
 if __name__ == "__main__":
     menu()
- 
