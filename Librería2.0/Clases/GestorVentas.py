@@ -74,8 +74,6 @@ class GestorVentas:
             sel = input("\nIngrese el número de la categoría: ").strip()
             if sel.isdigit() and 0 < int(sel) <= len(cats):
                 cat_elegida = cats[int(sel)-1].lower()
-                
-                # Lógica robusta: Si es 'sin categoria', busca productos sin la clave o vacíos
                 if cat_elegida == "sin categoria":
                     cods = [p['codigo'] for p in inventario.productos if 'categoria' not in p or not p.get('categoria')]
                 else:
