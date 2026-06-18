@@ -217,3 +217,33 @@ class GestorInventario:
                 encontrados = True     
         if not encontrados:
             print("No se encontraron productos con ese nombre.")
+            
+    def reponer_stock(self):
+        print("\n--- REPONER STOCK ---")
+        if not self.productos:
+            print("El inventario está vacío. Registre productos primero.")
+            return
+
+        codigo = input("Ingrese el código del producto a reponer: ").strip().upper()
+        
+        # Buscamos el producto
+        producto = next((p for p in self.productos if p['codigo'] == codigo), None)
+        
+        if not producto:
+            print("Error: No se encontró ningún producto con ese código.")
+            return
+            
+        print(f"\nProducto encontrado: {producto['nombre']}")
+        print(f"Stock actual: {producto['stock']}")
+        
+        while True:
+            try:
+                cantidad = int(input("Ingrese la cantidad a añadir al inventario: "))
+                if cantidad > 0:
+                    producto['stock'] += cantidad
+                    print(f"¡Éxito! El nuevo stock de '{producto['nombre']}' es de {producto['stock']} unidades.")
+                    break
+                else:
+                    print("Error: La cantidad a reponer debe ser mayor a 0.")
+            except ValueError:
+                print("Error: Por favor, ingrese un número entero válido.")
