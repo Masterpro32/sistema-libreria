@@ -1,7 +1,7 @@
 # interfaz.py
 
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import ttk, messagebox
 
 from Clases.GestorVentas import GestorVentas
 from Clases.GestorArchivo import GestorArchivos
