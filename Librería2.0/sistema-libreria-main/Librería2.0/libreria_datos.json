@@ -1,0 +1,14 @@
+{
+    "productos": [
+        {
+            "codigo": "E001",
+            "nombre": "lapicero",
+            "categoria": "Escritura",
+            "precio": 2.0,
+            "precio_compra": 1.5,
+            "stock": 100,
+            "stock_minimo": 20
+        }
+    ],
+    "ventas": []
+}
