@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from datetime import datetime
 
 class GestorVentas:
@@ -12,8 +13,12 @@ class GestorVentas:
             if nombre == "" or nombre.lower() in ['nan', 'inf', '-inf', 'infinity', 'null', 'undefined']:
                 print("Error: Nombre de vendedor no válido.")
                 continue
-            if nombre.isdigit():
-                print("Error: El nombre de vendedor no puede ser numérico.")
+            if len(nombre) < 3 or len(nombre) > 50:
+                print("Error: El nombre del vendedor debe tener entre 3 y 50 caracteres.")
+                continue
+            patron_nombre = r"^[A-Za-zÁÉÍÓÚáéíóúÑñÜü ]+$"
+            if not re.fullmatch(patron_nombre, nombre):
+                print("Error : El nombre del vendedor solo puede contener letras y espacios. No se permiten números ni símbolos.")
                 continue
             return nombre
 
