@@ -5,365 +5,468 @@
             "nombre": "Tajador_Metal",
             "categoria": "Escritura",
             "precio": 1.5,
-            "stock": 100
+            "precio_compra": 1.05,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "E002",
             "nombre": "Lápiz_hb",
             "categoria": "Escritura",
             "precio": 1.0,
-            "stock": 100
+            "precio_compra": 0.7,
+            "stock": 100,
+            "stock_minimo": 20
         },
         {
             "codigo": "C001",
             "nombre": "Cuaderno A4 Cuadriculado 100 hojas",
             "categoria": "Cuadernos",
             "precio": 6.9,
-            "stock": 97
+            "precio_compra": 4.83,
+            "stock": 42,
+            "stock_minimo": 50
         },
         {
             "codigo": "C002",
             "nombre": "Cuaderno A4 Rayado 100 hojas",
             "categoria": "Cuadernos",
             "precio": 6.9,
-            "stock": 100
+            "precio_compra": 4.83,
+            "stock": 86,
+            "stock_minimo": 50
         },
         {
             "codigo": "C003",
             "nombre": "Cuaderno Universitario 5 materias",
             "categoria": "Cuadernos",
             "precio": 18.9,
-            "stock": 100
+            "precio_compra": 13.23,
+            "stock": 15,
+            "stock_minimo": 20
         },
         {
             "codigo": "C004",
             "nombre": "Sketchboock A4 para dibujo",
             "categoria": "Cuadernos",
             "precio": 6.5,
-            "stock": 96
+            "precio_compra": 4.55,
+            "stock": 96,
+            "stock_minimo": 20
         },
         {
             "codigo": "C005",
             "nombre": "Libreta de notas A6 ",
             "categoria": "Cuadernos",
             "precio": 12.5,
-            "stock": 94
+            "precio_compra": 8.75,
+            "stock": 94,
+            "stock_minimo": 25
         },
         {
             "codigo": "P001",
             "nombre": "Cartulina Duplex Blanca",
             "categoria": "Papelería",
             "precio": 1.5,
-            "stock": 1000
+            "precio_compra": 1.05,
+            "stock": 500,
+            "stock_minimo": 100
         },
         {
             "codigo": "P002",
             "nombre": "Cartulina Corrugada Metalica",
             "categoria": "Papelería",
             "precio": 2.5,
-            "stock": 1000
+            "precio_compra": 1.75,
+            "stock": 500,
+            "stock_minimo": 100
         },
         {
             "codigo": "P003",
             "nombre": "Papel Lustre",
             "categoria": "Papelería",
             "precio": 0.4,
-            "stock": 1000
+            "precio_compra": 0.28,
+            "stock": 500,
+            "stock_minimo": 100
         },
         {
             "codigo": "P004",
             "nombre": "Papel Crepe ",
             "categoria": "Papelería",
             "precio": 1.2,
-            "stock": 990
+            "precio_compra": 0.84,
+            "stock": 500,
+            "stock_minimo": 100
         },
         {
             "codigo": "P005",
             "nombre": "Papel Seda",
             "categoria": "Papelería",
             "precio": 0.5,
-            "stock": 1000
+            "precio_compra": 0.35,
+            "stock": 500,
+            "stock_minimo": 100
         },
         {
             "codigo": "C006",
             "nombre": "Block de hojas Arcoíris",
             "categoria": "Cuadernos",
             "precio": 4.2,
-            "stock": 100
+            "precio_compra": 2.94,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "C007",
             "nombre": "Fólder Manila A4",
             "categoria": "Cuadernos",
             "precio": 1.2,
-            "stock": 498
+            "precio_compra": 0.84,
+            "stock": 498,
+            "stock_minimo": 50
         },
         {
             "codigo": "C008",
             "nombre": "Archivador",
             "categoria": "Cuadernos",
             "precio": 7.0,
-            "stock": 300
+            "precio_compra": 4.9,
+            "stock": 300,
+            "stock_minimo": 30
         },
         {
             "codigo": "P011",
             "nombre": "Folder Manila Oficio",
             "categoria": "Papelería",
             "precio": 2.0,
-            "stock": 500
+            "precio_compra": 1.4,
+            "stock": 500,
+            "stock_minimo": 50
         },
         {
             "codigo": "C010",
             "nombre": "Cuaderno de Control Escolar",
             "categoria": "Cuadernos",
             "precio": 9.5,
-            "stock": 100
+            "precio_compra": 6.65,
+            "stock": 40,
+            "stock_minimo": 10
         },
         {
             "codigo": "P006",
             "nombre": "Notas Adhesivas",
             "categoria": "Papelería",
             "precio": 2.0,
-            "stock": 100
+            "precio_compra": 1.4,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "P007",
             "nombre": "Mica Transparente A4",
             "categoria": "Papelería",
             "precio": 0.2,
-            "stock": 1000
+            "precio_compra": 0.14,
+            "stock": 1000,
+            "stock_minimo": 100
         },
         {
             "codigo": "P008",
             "nombre": "Banderitas Separadoras de Pagina ",
             "categoria": "Papelería",
             "precio": 1.5,
-            "stock": 500
+            "precio_compra": 1.05,
+            "stock": 500,
+            "stock_minimo": 50
         },
         {
             "codigo": "P009",
             "nombre": "Separadores de Plastico A4",
             "categoria": "Papelería",
             "precio": 0.8,
-            "stock": 500
+            "precio_compra": 0.56,
+            "stock": 500,
+            "stock_minimo": 50
         },
         {
             "codigo": "P010",
             "nombre": "Hojas Bond",
             "categoria": "Papelería",
             "precio": 0.1,
-            "stock": 10000
+            "precio_compra": 0.07,
+            "stock": 10000,
+            "stock_minimo": 1000
         },
         {
             "codigo": "E003",
             "nombre": "Lapicero Azul",
             "categoria": "Escritura",
             "precio": 1.2,
-            "stock": 100
+            "precio_compra": 0.84,
+            "stock": 45,
+            "stock_minimo": 50
         },
         {
             "codigo": "E004",
             "nombre": "Lapicero Rojo",
             "categoria": "Escritura",
             "precio": 1.2,
-            "stock": 100
+            "precio_compra": 0.84,
+            "stock": 90,
+            "stock_minimo": 50
         },
         {
             "codigo": "E005",
             "nombre": "Lapicero Negro",
             "categoria": "Escritura",
             "precio": 1.2,
-            "stock": 99
+            "precio_compra": 0.84,
+            "stock": 99,
+            "stock_minimo": 50
         },
         {
             "codigo": "E006",
             "nombre": "Plumon para Pizarra",
             "categoria": "Escritura",
             "precio": 3.5,
-            "stock": 96
+            "precio_compra": 2.45,
+            "stock": 96,
+            "stock_minimo": 10
         },
         {
             "codigo": "E007",
             "nombre": "Plumon Permanente ",
             "categoria": "Escritura",
             "precio": 4.5,
-            "stock": 100
+            "precio_compra": 3.15,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "E008",
             "nombre": "Resaltador Amarillo",
             "categoria": "Escritura",
             "precio": 3.2,
-            "stock": 100
+            "precio_compra": 2.24,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "E009",
             "nombre": "Borrador Blanco ",
             "categoria": "Escritura",
             "precio": 0.5,
-            "stock": 94
+            "precio_compra": 0.35,
+            "stock": 35,
+            "stock_minimo": 50
         },
         {
             "codigo": "E010",
             "nombre": "Corrector Liquido",
             "categoria": "Escritura",
             "precio": 3.5,
-            "stock": 100
+            "precio_compra": 2.45,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "A001",
             "nombre": "Caja de Colores x12",
             "categoria": "Arte y Manualidades",
             "precio": 13.0,
-            "stock": 100
+            "precio_compra": 9.1,
+            "stock": 24,
+            "stock_minimo": 30
         },
         {
             "codigo": "A002",
             "nombre": "Caja de Colores x24",
             "categoria": "Arte y Manualidades",
             "precio": 25.0,
-            "stock": 100
+            "precio_compra": 17.5,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "A003",
             "nombre": "Plumones Delgados x12",
             "categoria": "Arte y Manualidades",
             "precio": 6.8,
-            "stock": 99
+            "precio_compra": 4.76,
+            "stock": 99,
+            "stock_minimo": 10
         },
         {
             "codigo": "A004",
             "nombre": "Caja de Plumones Gruesos x12",
             "categoria": "Arte y Manualidades",
             "precio": 15.5,
-            "stock": 100
+            "precio_compra": 10.85,
+            "stock": 100,
+            "stock_minimo": 20
         },
         {
             "codigo": "A005",
             "nombre": "Témperas x6",
             "categoria": "Arte y Manualidades",
             "precio": 5.5,
-            "stock": 100
+            "precio_compra": 3.85,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "A006",
             "nombre": "Estuche de Acuarelas",
             "categoria": "Arte y Manualidades",
             "precio": 11.9,
-            "stock": 99
+            "precio_compra": 8.33,
+            "stock": 99,
+            "stock_minimo": 10
         },
         {
             "codigo": "A007",
             "nombre": "Crayolas Gruesas x12",
             "categoria": "Arte y Manualidades",
             "precio": 7.5,
-            "stock": 100
+            "precio_compra": 5.25,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "A008",
             "nombre": "Plastilinas x12",
             "categoria": "Arte y Manualidades",
             "precio": 4.8,
-            "stock": 100
+            "precio_compra": 3.36,
+            "stock": 33,
+            "stock_minimo": 35
         },
         {
             "codigo": "A009",
             "nombre": "Botella de Goma ",
             "categoria": "Arte y Manualidades",
             "precio": 2.8,
-            "stock": 100
+            "precio_compra": 1.96,
+            "stock": 28,
+            "stock_minimo": 30
         },
         {
             "codigo": "A010",
             "nombre": "Tubo de Escarcha en Gel",
             "categoria": "Arte y Manualidades",
             "precio": 2.0,
-            "stock": 100
+            "precio_compra": 1.4,
+            "stock": 100,
+            "stock_minimo": 20
         },
         {
             "codigo": "H001",
             "nombre": "Tijera Punta Roma",
             "categoria": "Herramientas de Oficina",
             "precio": 2.5,
-            "stock": 100
+            "precio_compra": 1.75,
+            "stock": 25,
+            "stock_minimo": 30
         },
         {
             "codigo": "H002",
             "nombre": "Cuter Plastico",
             "categoria": "Herramientas de Oficina",
             "precio": 4.8,
-            "stock": 98
+            "precio_compra": 3.36,
+            "stock": 98,
+            "stock_minimo": 10
         },
         {
             "codigo": "H003",
             "nombre": "Regla Transparente 30cm",
             "categoria": "Herramientas de Oficina",
             "precio": 1.5,
-            "stock": 100
+            "precio_compra": 1.05,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "H004",
             "nombre": "Compás",
             "categoria": "Herramientas de Oficina",
             "precio": 4.7,
-            "stock": 100
+            "precio_compra": 3.29,
+            "stock": 60,
+            "stock_minimo": 20
         },
         {
             "codigo": "H005",
             "nombre": "Engrapadoras de Metal ",
             "categoria": "Herramientas de Oficina",
             "precio": 16.9,
-            "stock": 100
+            "precio_compra": 11.83,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "H006",
             "nombre": "Saca Grapas",
             "categoria": "Herramientas de Oficina",
             "precio": 3.5,
-            "stock": 100
+            "precio_compra": 2.45,
+            "stock": 15,
+            "stock_minimo": 20
         },
         {
             "codigo": "H007",
             "nombre": "Perforador de Metal",
             "categoria": "Herramientas de Oficina",
             "precio": 14.9,
-            "stock": 100
+            "precio_compra": 10.43,
+            "stock": 35,
+            "stock_minimo": 10
         },
         {
             "codigo": "H008",
             "nombre": "Cinta de Embalaje",
             "categoria": "Herramientas de Oficina",
             "precio": 4.5,
-            "stock": 100
+            "precio_compra": 3.15,
+            "stock": 50,
+            "stock_minimo": 10
         },
         {
             "codigo": "H009",
             "nombre": "Cinta Masking",
             "categoria": "Herramientas de Oficina",
             "precio": 4.2,
-            "stock": 100
+            "precio_compra": 2.94,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "H010",
             "nombre": "Calculadora Cientifica",
             "categoria": "Herramientas de Oficina",
             "precio": 59.9,
-            "stock": 20
+            "precio_compra": 41.93,
+            "stock": 10,
+            "stock_minimo": 5
         },
         {
             "codigo": "H011",
             "nombre": "Regla 30cm",
             "categoria": "Herramientas de Oficina",
             "precio": 1.0,
-            "stock": 100
+            "precio_compra": 0.7,
+            "stock": 100,
+            "stock_minimo": 10
         },
         {
             "codigo": "H012",
             "nombre": "Cinta metrica",
             "categoria": "Herramientas de Oficina",
             "precio": 3.0,
-            "stock": 23,
-            "stock_minimo": 3
+            "precio_compra": 2.1,
+            "stock": 18,
+            "stock_minimo": 20
         },
         {
             "codigo": "E012",
@@ -379,236 +482,18 @@
             "nombre": "Papel calco",
             "categoria": "Papelería",
             "precio": 1.3,
-            "stock": 0,
-            "stock_minimo": 1
+            "precio_compra": 0.91,
+            "stock": 5,
+            "stock_minimo": 10
         },
         {
             "codigo": "H013",
-            "nombre": "Jeango de escuadras",
+            "nombre": "Juego de escuadras",
             "categoria": "Herramientas de Oficina",
             "precio": 5.0,
             "precio_compra": 3.5,
             "stock": 46,
             "stock_minimo": 5
-        }
-    ],
-    "ventas": [
-        {
-            "fecha": "17/06/2026 21:23:53",
-            "codigo": "C001",
-            "nombre": "Cuaderno A4 Cuadriculado 100 hojas",
-            "cantidad": 3,
-            "stock_anterior": 100,
-            "stock_nuevo": 97,
-            "precio_unitario": 6.9,
-            "total": 20.7,
-            "medio_pago": "efectivo",
-            "categoria": "Sin Categoria"
-        },
-        {
-            "fecha": "17/06/2026 21:31:15",
-            "codigo": "C005",
-            "nombre": "Libreta de notas A6 ",
-            "cantidad": 4,
-            "stock_anterior": 100,
-            "stock_nuevo": 96,
-            "precio_unitario": 12.5,
-            "total": 50.0,
-            "medio_pago": "tarjeta",
-            "categoria": "Sin Categoria"
-        },
-        {
-            "fecha": "17/06/2026 22:00:24",
-            "codigo": "E009",
-            "nombre": "Borrador Blanco ",
-            "cantidad": 3,
-            "stock_anterior": 100,
-            "stock_nuevo": 97,
-            "precio_unitario": 0.5,
-            "total": 1.5,
-            "medio_pago": "efecsadaa",
-            "categoria": "Sin Categoria"
-        },
-        {
-            "fecha": "17/06/2026 22:08:34",
-            "vendedor": "jeanpier",
-            "codigo": "E005",
-            "nombre": "Lapicero Negro",
-            "cantidad": 1,
-            "stock_anterior": 100,
-            "stock_nuevo": 99,
-            "precio_unitario": 1.2,
-            "total": 1.2,
-            "medio_pago": "Yape (Cod: 974)",
-            "categoria": "Sin Categoria"
-        },
-        {
-            "fecha": "17/06/2026 22:22:05",
-            "vendedor": "harold",
-            "codigo": "E009",
-            "nombre": "Borrador Blanco ",
-            "cantidad": 3,
-            "stock_anterior": 97,
-            "stock_nuevo": 94,
-            "precio_unitario": 0.5,
-            "total": 1.5,
-            "medio_pago": "Yape (Cod: 457)",
-            "categoria": "Sin Categoria"
-        },
-        {
-            "fecha": "17/06/2026 22:28:58",
-            "vendedor": "Diego",
-            "codigo": "P004",
-            "nombre": "Papel Crepe ",
-            "cantidad": 10,
-            "stock_anterior": 1000,
-            "stock_nuevo": 990,
-            "precio_unitario": 1.2,
-            "total": 12.0,
-            "medio_pago": "Efectivo",
-            "categoria": "Sin Categoria"
-        },
-        {
-            "fecha": "17/06/2026 23:18:06",
-            "vendedor": "Victoria",
-            "codigo": "H012",
-            "nombre": "Cinta metrica",
-            "cantidad": 1,
-            "stock_anterior": 24,
-            "stock_nuevo": 23,
-            "precio_unitario": 3.0,
-            "total": 3.0,
-            "medio_pago": "Tarjeta",
-            "categoria": "Sin Categoria"
-        },
-        {
-            "fecha": "17/06/2026 23:19:25",
-            "vendedor": "Haziel",
-            "codigo": "E006",
-            "nombre": "Plumon para Pizarra",
-            "cantidad": 4,
-            "stock_anterior": 100,
-            "stock_nuevo": 96,
-            "precio_unitario": 3.5,
-            "total": 14.0,
-            "medio_pago": "Efectivo",
-            "categoria": "Sin Categoria"
-        },
-        {
-            "fecha": "17/06/2026 23:32:13",
-            "vendedor": "Victoria",
-            "codigo": "C007",
-            "nombre": "Fólder Manila A4",
-            "categoria": "Sin Categoria",
-            "cantidad": 2,
-            "stock_anterior": 500,
-            "stock_nuevo": 498,
-            "precio_unitario": 1.2,
-            "precio_compra": 0,
-            "total": 2.4,
-            "utilidad": 2.4,
-            "medio_pago": "Yape (Cod: 472)"
-        },
-        {
-            "fecha": "19/06/2026 00:26:34",
-            "vendedor": "JEANPIER",
-            "pago": "Yape",
-            "codigo_pago": "412",
-            "productos_detalles": [
-                {
-                    "codigo": "C004",
-                    "nombre": "Sketchboock A4 para dibujo",
-                    "cantidad": 4,
-                    "subtotal": 26.0,
-                    "subutilidad": 26.0
-                },
-                {
-                    "codigo": "A006",
-                    "nombre": "Estuche de Acuarelas",
-                    "cantidad": 1,
-                    "subtotal": 11.9,
-                    "subutilidad": 11.9
-                },
-                {
-                    "codigo": "H002",
-                    "nombre": "Cuter Plastico",
-                    "cantidad": 2,
-                    "subtotal": 9.6,
-                    "subutilidad": 9.6
-                }
-            ],
-            "total": 47.5,
-            "utilidad": 47.5,
-            "codigo": "C004",
-            "nombre": "Sketchboock A4 para dibujo y otros...",
-            "cantidad": 7
-        },
-        {
-            "fecha": "19/06/2026 00:51:28",
-            "vendedor": "JEANPIER",
-            "pago": "Efectivo",
-            "codigo_pago": "",
-            "productos_detalles": [
-                {
-                    "codigo": "C005",
-                    "nombre": "Libreta de notas A6 ",
-                    "cantidad": 2,
-                    "subtotal": 25.0,
-                    "subutilidad": 25.0
-                },
-                {
-                    "codigo": "A003",
-                    "nombre": "Plumones Delgados x12",
-                    "cantidad": 1,
-                    "subtotal": 6.8,
-                    "subutilidad": 6.8
-                }
-            ],
-            "total": 31.8,
-            "utilidad": 31.8,
-            "codigo": "C005",
-            "nombre": "Libreta de notas A6  y otros...",
-            "cantidad": 3
-        },
-        {
-            "fecha": "19/06/2026 01:07:59",
-            "vendedor": "h013",
-            "pago": "Tarjeta",
-            "codigo_pago": "s",
-            "productos_detalles": [
-                {
-                    "codigo": "H013",
-                    "nombre": "Jeango de escuadras",
-                    "cantidad": 2,
-                    "subtotal": 10.0,
-                    "subutilidad": 3.0
-                }
-            ],
-            "total": 10.0,
-            "utilidad": 3.0,
-            "codigo": "H013",
-            "nombre": "Jeango de escuadras",
-            "cantidad": 2
-        },
-        {
-            "fecha": "19/06/2026 01:09:17",
-            "vendedor": "Jeanpier",
-            "pago": "Tarjeta",
-            "codigo_pago": "",
-            "productos_detalles": [
-                {
-                    "codigo": "H013",
-                    "nombre": "Jeango de escuadras",
-                    "cantidad": 2,
-                    "subtotal": 10.0,
-                    "subutilidad": 3.0
-                }
-            ],
-            "total": 10.0,
-            "utilidad": 3.0,
-            "codigo": "H013",
-            "nombre": "Jeango de escuadras",
-            "cantidad": 2
         }
     ]
 }
