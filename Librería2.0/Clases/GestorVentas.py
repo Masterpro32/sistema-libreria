@@ -239,26 +239,32 @@ class GestorVentas:
             
             venta_sel = self.ventas[int(num_ingresado) - 1]
             
-            print("\n==========================================================")
+            print("\n=======================================================================")
             print(f"DETALLE DE LA VENTA N° {num_ingresado}")
-            print("==========================================================")
+            print("=======================================================================")
             print(f"Fecha/Hora:  {venta_sel.get('fecha', 'N/A')}")
             print(f"Vendedor:    {venta_sel.get('vendedor', 'N/A')}")
             print(f"Método Pago: {venta_sel.get('pago', 'Efectivo')} {f'({venta_sel.get('codigo_pago')})' if venta_sel.get('codigo_pago') else ''}")
-            print("----------------------------------------------------------")
-            print(f"{'COD.':<6} | {'PRODUCTO':<30} | {'CANT.':<5} | {'SUBTOTAL':<9}")
-            print("----------------------------------------------------------")
+            print("------------------------------------------------------------------------")
+            print(f"{'COD.':<6} | {'PRODUCTO':<30} | {'STOCK':<10} | {'CANT.':<5} | {'SUBTOTAL':<9}")
+            print("------------------------------------------------------------------------")
+            lista_items = venta_sel.get("productos_detalles", [venta_sel])
             
-            if "productos_detalles" in venta_sel:
-                for item in venta_sel["productos_detalles"]:
-                    print(f"{item.get('codigo', 'N/A'):<6} | {item.get('nombre', 'Desconocido'):<30} | {item.get('cantidad', 0):<5} | S/. {item.get('subtotal', 0):<5.2f}")
-            else:
-                print(f"{venta_sel.get('codigo', 'N/A'):<6} | {venta_sel.get('nombre', 'Desconocido'):<30} | {venta_sel.get('cantidad', 0):<5} | S/. {venta_sel.get('total', 0):<5.2f}")
+            for item in lista_items:
+                cod = item.get('codigo')
+                cant = item.get('cantidad', 0)
+            
+                prod = next((p for p in inventario.productos if p['codigo'] == cod), None)
+                stock_actual = prod.get('stock', 0) if prod else 0
+                stock_inicial = stock_actual + cant
+                str_stock = f"{stock_inicial}->{stock_actual}"
                 
-            print("----------------------------------------------------------")
-            print(f"TOTAL COMPRA:                               S/. {venta_sel.get('total', 0):.2f}")
-            print(f"UTILIDAD:                                   S/. {venta_sel.get('utilidad', 0):.2f}")
-            print("==========================================================")
+                print(f"{cod:<6} | {item.get('nombre', 'Desconocido'):<30} | {str_stock:<10} | {cant:<5} | S/. {item.get('subtotal', 0):<5.2f}")
+                
+            print("-------------------------------------------------------------------------")
+            print(f"TOTAL COMPRA:                                                  S/. {venta_sel.get('total', 0):.2f}")
+            print(f"UTILIDAD:                                                      S/. {venta_sel.get('utilidad', 0):.2f}")
+            print("========================================================================")
             return
 
         print(f"\n{'N° VENTA':<9} | {'FECHA':<20} | {'COD.':<6} | {'PRODUCTO':<25} | {'CATEGORÍA':<18} | {'STOCK':<11} | {'CANT.':<5} | {'PAGO':<15} | {'TOTAL':<9} | {'UTILIDAD':<9}")
